@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next.js အခြေခံမှ အသေးစိတ်အထိ</title>
+    
+    <!-- Reveal.js Core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.css">
+    <!-- Reveal.js Theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/night.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts (Padauk) -->
+    <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom Styling for Burmese Fonts and Modern Look */
+        :root {
+            --primary-color: #0070f3; /* Next.js blue/accent */
+            --text-color: #ededed;
+        }
+        
+        .reveal {
+            font-family: 'Pyidaungsu', 'Padauk', Tahoma, Arial, sans-serif;
+            color: var(--text-color);
+        }
+        
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-family: 'Pyidaungsu', 'Padauk', sans-serif;
+            font-weight: 700;
+            text-transform: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .reveal h1 { font-size: 2.5em; color: #fff; }
+        .reveal h2 { font-size: 1.8em; color: #61dafb; } /* React Blue */
+        .reveal h3 { font-size: 1.5em; color: #0070f3; } /* Next Blue */
+        
+        .reveal p, .reveal li {
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .box {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 5px solid var(--primary-color);
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.7em;
+            color: #d4d4d4;
+            text-align: left;
+        }
+
+        .icon-large {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        /* Subtle gradient background for the whole presentation */
+        .reveal .slide-background {
+            background: linear-gradient(135deg, #000000 0%, #111111 100%);
+        }
+        
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide 1: Title -->
+            <section>
+                <i class="fa-brands fa-react icon-large" style="color: #61dafb;"></i>
+                <i class="fa-solid fa-bolt icon-large" style="color: #0070f3;"></i>
+                <h1>Next.js <span class="highlight">အခြေခံမှ အသေးစိတ်အထိ</span></h1>
+                <p>Web Development ကို ပိုမိုမြန်ဆန်၊ ကောင်းမွန်အောင် တည်ဆောက်ခြင်း</p>
+                <br>
+                <p style="font-size: 0.7em; opacity: 0.7;">တင်ဆက်သူ: Front-end Expert</p>
+            </section>
+
+            <!-- Slide 2: What is Next.js -->
+            <section>
+                <h2>Next.js ဆိုတာ ဘာလဲ?</h2>
+                <div class="box fragment fade-up">
+                    <p>Next.js ဆိုတာ <strong>React Framework</strong> တစ်ခုဖြစ်ပါတယ်။ Vercel ကုမ္ပဏီကနေ ဖန်တီးထားတာဖြစ်ပြီး Web Application တွေကို Production အဆင့်အထိ အလွယ်တကူထုတ်လုပ်နိုင်အောင် ကူညီပေးပါတယ်။</p>
+                </div>
+                <ul>
+                    <li class="fragment fade-right">React ရဲ့ အားနည်းချက်တွေကို ဖြည့်ဆည်းပေးတယ်။</li>
+                    <li class="fragment fade-right">Full-stack web application တွေရေးဖို့ အဆင်ပြေတယ်။</li>
+                    <li class="fragment fade-right">Speed နဲ့ Performance အတွက် အထူးတည်ဆောက်ထားတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 3: React vs Next.js -->
+            <section>
+                <h2>React နဲ့ Next.js ဘာကွာလဲ?</h2>
+                <div class="grid-2">
+                    <div class="box fragment fade-up">
+                        <h3 style="color: #61dafb;">React (Library)</h3>
+                        <p>UI (User Interface) တည်ဆောက်ဖို့အတွက်ပဲ အဓိကသုံးပါတယ်။ Routing, Data fetching တွေအတွက် တခြား Library တွေ (ဥပမာ- React Router) ထပ်လိုပါတယ်။</p>
+                    </div>
+                    <div class="box fragment fade-up" data-fragment-index="1">
+                        <h3 style="color: #0070f3;">Next.js (Framework)</h3>
+                        <p>React ကိုအခြေခံထားပေမယ့် Routing, API, SEO, Server-side rendering အားလုံး အသင့်ပါဝင်ပြီးသား All-in-one package ဖြစ်ပါတယ်။</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: Why Next.js -->
+            <section>
+                <h2>ဘာကြောင့် Next.js ကို သုံးသင့်တာလဲ?</h2>
+                <ul>
+                    <li class="fragment fade-up"><i class="fa-solid fa-rocket" style="color: yellow;"></i> <strong>အမြန်နှုန်း (Performance):</strong> Web page တွေ လျှပ်တစ်ပြက်ပွင့်ဖို့ ကူညီပေးတယ်။</li>
+                    <li class="fragment fade-up"><i class="fa-solid fa-magnifying-glass" style="color: lightgreen;"></i> <strong>SEO ကောင်းမွန်ခြင်း:</strong> Search Engine တွေ (Google) မှာ ရှာရလွယ်အောင် အထောက်အပံ့ပေးတယ်။</li>
+                    <li class="fragment fade-up"><i class="fa-solid fa-code" style="color: pink;"></i> <strong>Developer Experience:</strong> Setup လုပ်ရလွယ်ပြီး Code ရေးရတာ မြန်ဆန်စေတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 5: Core Features -->
+            <section>
+                <h2>Next.js ရဲ့ အဓိက လုပ်ဆောင်ချက်များ (Core Features)</h2>
+                <div class="grid-2" style="font-size: 0.8em;">
+                    <ul style="list-style-type: none;">
+                        <li class="fragment fade-right"><i class="fa-solid fa-server"></i> Server-Side Rendering (SSR)</li>
+                        <li class="fragment fade-right"><i class="fa-solid fa-file-code"></i> Static Site Generation (SSG)</li>
+                        <li class="fragment fade-right"><i class="fa-solid fa-route"></i> App Router & File-based Routing</li>
+                    </ul>
+                    <ul style="list-style-type: none;">
+                        <li class="fragment fade-left"><i class="fa-solid fa-image"></i> Image & Font Optimization</li>
+                        <li class="fragment fade-left"><i class="fa-solid fa-database"></i> API Routes</li>
+                        <li class="fragment fade-left"><i class="fa-solid fa-shield-halved"></i> Built-in Security</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 6: SSR -->
+            <section>
+                <h2>Server-Side Rendering (SSR) ဆိုတာဘာလဲ?</h2>
+                <div class="box">
+                    <p>User က Website ကို ဝင်ကြည့်တဲ့ <span class="highlight">အချိန်တိုင်းမှာ</span> Server ကနေ HTML page ကို ချက်ချင်းတည်ဆောက်ပြီး Browser ဆီပို့ပေးတဲ့ စနစ်ပါ။</p>
+                </div>
+                <ul>
+                    <li class="fragment fade-up"><strong>အားသာချက်:</strong> အမြဲတမ်း Data အသစ် (Up-to-date) ရတယ်။ SEO အတွက် အလွန်ကောင်းတယ်။</li>
+                    <li class="fragment fade-up"><strong>သုံးသင့်တဲ့နေရာ:</strong> E-commerce Cart, Dashboard, Social Media Feed စတဲ့ Data အမြဲပြောင်းလဲနေတဲ့ နေရာတွေ။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 7: SSG -->
+            <section>
+                <h2>Static Site Generation (SSG)</h2>
+                <div class="box">
+                    <p>Website ကို Server ပေါ်တင်လိုက်ကတည်းက (Build time) HTML page တွေကို ကြိုတင်တည်ဆောက်ထားတဲ့ စနစ်ပါ။</p>
+                </div>
+                <ul>
+                    <li class="fragment fade-up"><strong>အားသာချက်:</strong> အလွန်မြန်ဆန်တယ်။ Server အလုပ်လုပ်ရသက်သာတယ်။</li>
+                    <li class="fragment fade-up"><strong>သုံးသင့်တဲ့နေရာ:</strong> Blog post တွေ, Documentation တွေ, Portfolio website တွေ (Data ခဏခဏ မပြောင်းတဲ့နေရာတွေ)။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 8: CSR -->
+            <section>
+                <h2>Client-Side Rendering (CSR)</h2>
+                <div class="box">
+                    <p>Browser (Client) ကနေပဲ JavaScript တွေကို Run ပြီးမှ Page ကိုပေါ်စေတဲ့ စနစ်ပါ။ (React ရဲ့ မူလအလုပ်လုပ်ပုံ)</p>
+                </div>
+                <ul>
+                    <li class="fragment fade-up"><strong>အားသာချက်:</strong> Page ပွင့်ပြီးသွားရင် နောက် Page တွေကိုကူးတဲ့အခါ အရမ်းမြန်တယ်။</li>
+                    <li class="fragment fade-up"><strong>အားနည်းချက်:</strong> ပထမဆုံးအကြိမ် Load လုပ်ချိန်ကြာနိုင်တယ်။ SEO အတွက် မကောင်းဘူး။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 9: ISR -->
+            <section>
+                <h2>Incremental Static Regeneration (ISR)</h2>
+                <div class="box">
+                    <p>SSG နဲ့ SSR ရဲ့ ကောင်းကွက်တွေကို ပေါင်းထားတာပါ။ Page ကို ကြိုတင် Build ထားပေမယ့်၊ သတ်မှတ်ထားတဲ့ အချိန်ရောက်တိုင်း နောက်ကွယ်ကနေ (Background) Data အသစ်ပြန်ယူပြီး Page ကို Update လုပ်ပေးပါတယ်။</p>
+                </div>
+                <p class="fragment fade-up"><i class="fa-solid fa-lightbulb" style="color: yellow;"></i> ဥပမာ - သတင်း Website တွေမှာ ၆၀ စက္ကန့်တစ်ခါ သတင်းအသစ် ပြန်ဆွဲယူတာမျိုး။</p>
+            </section>
+
+            <!-- Slide 10: Which to use -->
+            <section>
+                <h2>ဘယ်အချိန်မှာ ဘယ် Rendering ကိုသုံးမလဲ?</h2>
+                <table style="font-size: 0.7em; width: 100%; border-collapse: collapse;">
+                    <tr style="background-color: #333;">
+                        <th>Rendering</th>
+                        <th>အချိန် (When to generate)</th>
+                        <th>သင့်တော်သော နေရာ (Use Case)</th>
+                    </tr>
+                    <tr class="fragment fade-up">
+                        <td><strong>SSG</strong></td>
+                        <td>Build Time</td>
+                        <td>Blogs, Marketing pages, Help docs</td>
+                    </tr>
+                    <tr class="fragment fade-up">
+                        <td><strong>SSR</strong></td>
+                        <td>Request Time (အချိန်တိုင်း)</td>
+                        <td>Dynamic Dashboards, Shopping Cart</td>
+                    </tr>
+                    <tr class="fragment fade-up">
+                        <td><strong>ISR</strong></td>
+                        <td>Background (သတ်မှတ်ချိန်တိုင်း)</td>
+                        <td>News feeds, Product Listings</td>
+                    </tr>
+                    <tr class="fragment fade-up">
+                        <td><strong>CSR</strong></td>
+                        <td>On the Browser</td>
+                        <td>Private routes, highly interactive UI</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Slide 11: File-based Routing -->
+            <section>
+                <h2>File-based Routing စနစ်</h2>
+                <p>Next.js ရဲ့ အလွယ်ကူဆုံး အားသာချက်ပါ။ Folder နဲ့ File နာမည်ပေးလိုက်တာနဲ့ အလိုအလျောက် URL Route တွေ ဖြစ်သွားပါတယ်။</p>
+                <div class="code-block fragment fade-up">
+app/<br>
+ ├── page.tsx  &nbsp;&nbsp;&nbsp;&nbsp;--> yoursite.com/<br>
+ ├── about/<br>
+ │    └── page.tsx &nbsp;--> yoursite.com/about<br>
+ └── blog/<br>
+      └── page.tsx &nbsp;--> yoursite.com/blog
+                </div>
+            </section>
+
+            <!-- Slide 12: App Router vs Pages Router -->
+            <section>
+                <h2>App Router သစ် (Next.js 13+)</h2>
+                <div class="box">
+                    <p>ယခင်က <code>pages/</code> folder ကိုသုံးပေမယ့် အခု <code>app/</code> folder စနစ် (App Router) ကို ပြောင်းလဲအသုံးပြုလာပါပြီ။</p>
+                </div>
+                <ul>
+                    <li class="fragment fade-up">React Server Components ကို Default အဖြစ်သုံးလာတယ်။</li>
+                    <li class="fragment fade-up">Layouts (layout.tsx) တွေကို အလွယ်တကူ သတ်မှတ်နိုင်တယ်။</li>
+                    <li class="fragment fade-up">Loading, Error တွေကို ဖိုင်ခွဲပြီး ရေးရတာ ပိုရှင်းလင်းသွားတယ်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 13: SEO -->
+            <section>
+                <h2>Next.js နှင့် SEO (Search Engine Optimization)</h2>
+                <p>Google က Website တွေကို ဖတ်တဲ့အခါ HTML အပြည့်အစုံကို လိုချင်ပါတယ်။ Next.js ရဲ့ SSR နဲ့ SSG က HTML ကို အသင့်ထုတ်ပေးလို့ SEO အတွက် အထူးကောင်းမွန်ပါတယ်။</p>
+                <div class="code-block fragment fade-up">
+// app/layout.tsx တွင် Meta data ထည့်ခြင်း
+export const metadata = {
+  title: 'My Next.js Blog',
+  description: 'Learn Next.js easily in Burmese',
+}
+                </div>
+            </section>
+
+            <!-- Slide 14: Image Optimization -->
+            <section>
+                <h2>ပုံများအတွက် Image Optimization</h2>
+                <p><code>&lt;img&gt;</code> Tag အစား Next.js ရဲ့ <code>&lt;Image&gt;</code> component ကိုသုံးခြင်းဖြင့် ပုံတွေကို အလိုအလျောက် Size ချုံ့ပေးခြင်း၊ WebP format ပြောင်းပေးခြင်းများ လုပ်ဆောင်ပေးပါတယ်။</p>
+                <div class="code-block fragment fade-up">
+import Image from 'next/image'
+
+export default function Page() {
+  return (
+    &lt;Image
+      src="/profile.png"
+      width={500}
+      height={500}
+      alt="Profile Picture"
+    /&gt;
+  )
+}
+                </div>
+            </section>
+
+            <!-- Slide 15: Font Optimization -->
+            <section>
+                <h2>Font များကို စီမံခန့်ခွဲခြင်း (next/font)</h2>
+                <p>Google Fonts တွေကို လွယ်ကူစွာ ချိတ်ဆက်နိုင်ပြီး၊ နှောင့်နှေးမှုမရှိအောင် (No Layout Shift) အလိုအလျောက် Optimize လုပ်ပေးပါတယ်။</p>
+                <div class="code-block fragment fade-up">
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export default function RootLayout({ children }) {
+  return (
+    &lt;html lang="en" className={inter.className}&gt;
+      &lt;body&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  )
+}
+                </div>
+            </section>
+
+            <!-- Slide 16: API Routes -->
+            <section>
+                <h2>Backend API များကို Next.js တွင်ရေးခြင်း</h2>
+                <div class="box">
+                    <p>Next.js မှာ Backend Server သက်သက်ထောင်စရာမလိုဘဲ API (Route Handlers) တွေကိုပါ တစ်ခါတည်း ရေးသားနိုင်ပါတယ်။</p>
+                </div>
+                <div class="code-block fragment fade-up">
+// app/api/hello/route.ts
+export async function GET() {
+  return Response.json({ message: 'Hello from Next.js API!' })
+}
+                </div>
+                <p class="fragment fade-up">ဒါကြောင့် Next.js ကို <strong>Full-stack Framework</strong> လို့ ခေါ်ကြတာပါ။</p>
+            </section>
+
+            <!-- Slide 17: Prerequisites -->
+            <section>
+                <h2>မစတင်ခင် ဘာတွေသိထားဖို့လိုမလဲ?</h2>
+                <div class="grid-2">
+                    <ul>
+                        <li class="fragment fade-right">HTML, CSS အခြေခံ</li>
+                        <li class="fragment fade-right">JavaScript (ES6+)</li>
+                        <li class="fragment fade-right">React အခြေခံ
+                            <ul>
+                                <li>Components</li>
+                                <li>Props & State</li>
+                                <li>Hooks (useState, useEffect)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="box fragment fade-left">
+                        <i class="fa-solid fa-triangle-exclamation" style="color: orange; font-size: 2em;"></i>
+                        <p>React ကို မသိဘဲ Next.js ကို တိုက်ရိုက်လေ့လာဖို့ မခက်ခဲပေမယ့်၊ React အခြေခံရှိထားရင် ပိုမြန်မြန် တတ်မြောက်နိုင်ပါတယ်။</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 18: Installing Node.js -->
+            <section>
+                <h2>၁။ Node.js ထည့်သွင်းခြင်း</h2>
+                <p>Next.js အသုံးပြုဖို့ ကွန်ပျူတာမှာ <strong>Node.js</strong> install လုပ်ထားဖို့လိုပါတယ်။</p>
+                <ul>
+                    <li class="fragment fade-up">Website: <a href="https://nodejs.org" target="_blank" style="color: #61dafb;">nodejs.org</a> သို့သွားပါ။</li>
+                    <li class="fragment fade-up">LTS (Long Term Support) Version ကို ဒေါင်းလုဒ်ဆွဲပြီး Install လုပ်ပါ။</li>
+                    <li class="fragment fade-up">စစ်ဆေးရန် Terminal (CMD) တွင် ရိုက်ထည့်ပါ:
+                        <div class="code-block" style="margin-top: 10px;">
+                            node -v<br>
+                            npm -v
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Slide 19: Create Next App -->
+            <section>
+                <h2>၂။ Project အသစ်စတင်ခြင်း</h2>
+                <p>Terminal ဖွင့်ပြီး အောက်ပါ Command ကို ရိုက်ထည့်ပါ။</p>
+                <div class="code-block fragment fade-up" style="font-size: 0.9em; padding: 20px;">
+                    npx create-next-app@latest my-app
+                </div>
+                <div class="fragment fade-up" style="margin-top: 20px;">
+                    <p style="font-size: 0.8em; opacity: 0.8;">မေးခွန်းလေးတွေ မေးပါလိမ့်မယ်...</p>
+                    <ul style="font-size: 0.7em;">
+                        <li>Use TypeScript? -> Yes/No</li>
+                        <li>Use Tailwind CSS? -> Yes (Recommended)</li>
+                        <li>Use App Router? -> Yes (Must use)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 20: Project Structure -->
+            <section>
+                <h2>၃။ Project ဖိုင်တည်ဆောက်ပုံ</h2>
+                <div class="box" style="font-size: 0.8em;">
+                    <ul style="list-style-type: none;">
+                        <li>📁 <strong>app/</strong> - Main code တွေရေးရမယ့် နေရာ (Routing)</li>
+                        <li>📄 <strong>app/layout.tsx</strong> - Website တစ်ခုလုံးရဲ့ အပြင်အဆင်</li>
+                        <li>📄 <strong>app/page.tsx</strong> - Home Page (ပထမဆုံးမြင်ရမယ့်စာမျက်နှာ)</li>
+                        <li>📁 <strong>public/</strong> - ပုံတွေ၊ Font တွေ (Static Assets) ထားတဲ့နေရာ</li>
+                        <li>📄 <strong>package.json</strong> - Project ရဲ့ Library မှတ်တမ်း</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 21: Running the Server -->
+            <section>
+                <h2>၄။ Development Server Run ခြင်း</h2>
+                <p>Project folder ထဲဝင်ပြီး Server စတင် Run ပါမည်။</p>
+                <div class="code-block fragment fade-up">
+cd my-app
+npm run dev
+                </div>
+                <p class="fragment fade-up" style="margin-top: 20px;">
+                    Browser ဖွင့်ပြီး <a href="http://localhost:3000" target="_blank" style="color: #61dafb;">http://localhost:3000</a> ကိုသွားကြည့်ပါ။ Next.js ရဲ့ Welcome page ကို မြင်ရပါမည်။
+                </p>
+            </section>
+
+            <!-- Slide 22: Creating First Page -->
+            <section>
+                <h2>၅။ ပထမဆုံး Page အသစ်ဖန်တီးခြင်း</h2>
+                <p>ဥပမာ - About page ဖန်တီးလိုပါက `app/about/page.tsx` ဖိုင်ကို တည်ဆောက်ပါ။</p>
+                <div class="code-block fragment fade-up">
+// app/about/page.tsx
+export default function AboutPage() {
+  return (
+    &lt;main&gt;
+      &lt;h1&gt;ကျွန်ုပ်တို့အကြောင်း&lt;/h1&gt;
+      &lt;p&gt;Next.js လေ့လာနေပါသည်။&lt;/p&gt;
+    &lt;/main&gt;
+  )
+}
+                </div>
+                <p class="fragment fade-up" style="font-size: 0.7em; margin-top:10px;">http://localhost:3000/about တွင် သွားကြည့်နိုင်ပါပြီ။</p>
+            </section>
+
+            <!-- Slide 23: Linking Pages -->
+            <section>
+                <h2>၆။ Page များချိတ်ဆက်ခြင်း (Link)</h2>
+                <p>HTML ရဲ့ <code>&lt;a&gt;</code> tag အစား Next.js ရဲ့ <code>&lt;Link&gt;</code> ကိုသုံးရပါမယ်။ (Page မပွင့်ဘဲ ချက်ချင်း ကူးသွားစေရန်)</p>
+                <div class="code-block fragment fade-up">
+import Link from 'next/link'
+
+export default function Home() {
+  return (
+    &lt;div&gt;
+      &lt;Link href="/about"&gt;
+        About Page သို့သွားရန်
+      &lt;/Link&gt;
+    &lt;/div&gt;
+  )
+}
+                </div>
+            </section>
+
+            <!-- Slide 24: Styling -->
+            <section>
+                <h2>၇။ Styling (ဒီဇိုင်းပြင်ဆင်ခြင်း)</h2>
+                <p>Next.js မှာ CSS ရေးဖို့ နည်းလမ်းများစွာ ရှိပါတယ်။</p>
+                <ul>
+                    <li class="fragment fade-up"><strong>Global CSS:</strong> app/globals.css တွင်ရေးခြင်း။</li>
+                    <li class="fragment fade-up"><strong>CSS Modules:</strong> styles.module.css ဖိုင်ခွဲရေးခြင်း (Class name တွေ မထပ်အောင် ကာကွယ်ပေးသည်)။</li>
+                    <li class="fragment fade-up"><strong>Tailwind CSS:</strong> အကောင်းဆုံးနှင့် လက်ရှိ လူသုံးအများဆုံး (Setup လုပ်ရာတွင် အသင့်ရွေးချယ်ခဲ့ပါက တန်းသုံးနိုင်သည်)။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 25: Server vs Client Components -->
+            <section>
+                <h2>၈။ Server vs Client Components</h2>
+                <div class="grid-2" style="font-size: 0.8em;">
+                    <div class="box fragment fade-up">
+                        <h4 style="color: #61dafb;">Server Component (Default)</h4>
+                        <p>Server မှာပဲ အလုပ်လုပ်တယ်။ Database ကို တိုက်ရိုက်ချိတ်လို့ရတယ်။ onClick လိုမျိုး Event တွေ သုံးလို့မရဘူး။</p>
+                    </div>
+                    <div class="box fragment fade-up">
+                        <h4 style="color: #ffb86c;">Client Component</h4>
+                        <p>Browser မှာ အလုပ်လုပ်တယ်။ useState, useEffect နဲ့ onClick တွေသုံးချင်ရင် ဖိုင်ထိပ်ဆုံးမှာ <code>'use client'</code> လို့ ကြေညာပေးရမယ်။</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 26: Data Fetching -->
+            <section>
+                <h2>၉။ Data Fetching (Data ရယူခြင်း)</h2>
+                <p>Server Components တွေမှာ <code>async/await</code> ကို တိုက်ရိုက်သုံးပြီး API ကနေ Data လှမ်းယူလို့ရပါတယ်။</p>
+                <div class="code-block fragment fade-up">
+export default async function Page() {
+  // Server ဘက်မှာပဲ run ပါမယ်
+  const res = await fetch('https://api.example.com/data');
+  const data = await res.json();
+
+  return (
+    &lt;ul&gt;
+      {data.map(item =&gt; &lt;li key={item.id}&gt;{item.name}&lt;/li&gt;)}
+    &lt;/ul&gt;
+  );
+}
+                </div>
+            </section>
+
+            <!-- Slide 27: Loading and Error -->
+            <section>
+                <h2>၁၀။ Loading & Error ပြသခြင်း</h2>
+                <p>Data ဆွဲယူနေချိန်နဲ့ အမှားအယွင်းဖြစ်ချိန်တွေအတွက် UI ကို လွယ်လွယ်ကူကူ ဖန်တီးနိုင်ပါတယ်။</p>
+                <ul>
+                    <li class="fragment fade-up"><code>loading.tsx</code> - Data ယူနေချိန်မှာ အလိုအလျောက် ပြသပေးမည့် ဖိုင်။</li>
+                    <li class="fragment fade-up"><code>error.tsx</code> - Error တက်သွားရင် Website တစ်ခုလုံး ပျက်မသွားဘဲ ဒီဖိုင်ကိုပဲ ပြသပေးပါမည်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 28: Deployment -->
+            <section>
+                <h2>၁၁။ Deployment (Website လွှင့်တင်ခြင်း)</h2>
+                <div class="box">
+                    <p>Next.js ကို ဖန်တီးထားတဲ့ <strong>Vercel</strong> မှာ အလွယ်ကူဆုံး Free လွှင့်တင်နိုင်ပါတယ်။</p>
+                </div>
+                <ol style="font-size: 0.8em;">
+                    <li class="fragment fade-up">မိမိ Code ကို GitHub (သို့) GitLab တွင် တင်ပါ။</li>
+                    <li class="fragment fade-up"><a href="https://vercel.com" target="_blank" style="color: #61dafb;">Vercel.com</a> တွင် အကောင့်ဖွင့်ပါ။</li>
+                    <li class="fragment fade-up">GitHub repository ကို Vercel နှင့် ချိတ်ဆက်ပါ။</li>
+                    <li class="fragment fade-up">"Deploy" ကိုနှိပ်လိုက်ရုံဖြင့် အလိုအလျောက် Build လုပ်ပြီး Live URL ရရှိပါမည်။</li>
+                </ol>
+            </section>
+
+            <!-- Slide 29: Conclusion -->
+            <section>
+                <h2>အနှစ်ချုပ် (Conclusion)</h2>
+                <ul style="font-size: 0.9em;">
+                    <li class="fragment fade-right">Next.js သည် React ၏ အဆင့်မြင့် Framework တစ်ခုဖြစ်သည်။</li>
+                    <li class="fragment fade-right">Performance, SEO နှင့် Developer Experience ကို အကောင်းဆုံး ထောက်ပံ့ပေးသည်။</li>
+                    <li class="fragment fade-right">SSR, SSG, API route စသည်တို့ပါဝင်၍ Full-stack အဖြစ်သုံးနိုင်သည်။</li>
+                    <li class="fragment fade-right">ခေတ်သစ် Web Development လောကတွင် မရှိမဖြစ် လေ့လာထားသင့်သော နည်းပညာတစ်ခု ဖြစ်ပါသည်။</li>
+                </ul>
+            </section>
+
+            <!-- Slide 30: Q&A and Thank You -->
+            <section>
+                <i class="fa-solid fa-hands-clapping icon-large" style="color: #FFD700;"></i>
+                <h2>ကျေးဇူးတင်ပါတယ်</h2>
+                <p>မေးခွန်းများ မေးမြန်းနိုင်ပါပြီ။ (Q & A)</p>
+                <br>
+                <div class="box fragment fade-up" style="display: inline-block;">
+                    <p style="margin:0;"><i class="fa-solid fa-code"></i> Keep Coding & Keep Learning!</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Reveal.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            // Size configuration to be slightly larger but not totally filling screen
+            width: 1100,
+            height: 700,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 1.5,
+            
+            // Animation and Transition Effects
+            controls: true,
+            progress: true,
+            center: true,
+            hash: true,
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            backgroundTransition: 'fade',
+            
+            // Interaction
+            keyboard: true,
+            mouseWheel: true
+        });
+    </script>
+</body>
+</html>
